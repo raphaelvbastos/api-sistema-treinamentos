@@ -1,0 +1,14 @@
+{
+  "name": "api-sistema-treinamentos",
+  "version": "1.0.0",
+  "description": "api da part backend do sistema de treinamentos",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Raphael Veronesi Bastos",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
