@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 
 app.get('/', function (req, res) {
-    res.write("TESTE");
+    res.send('teste');
 });
 
 var porta = process.env.PORT || 8080;
