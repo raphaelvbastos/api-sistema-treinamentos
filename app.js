@@ -140,7 +140,11 @@ app.get('/', function (req, res) {
         //     }
         // }); 
 
-        console.dir(curso);
+        // res.send("AAAA");
+
+        res.json(curso);
+
+        // console.dir(curso);
     });
 
 
@@ -148,9 +152,9 @@ app.get('/', function (req, res) {
     //     console.log(usu);
     // });
 
-    res.json(curso1);
+    // res.json(curso1);
 
-    console.log(cursoModel);
+    // console.log(cursoModel);
 
 
 });
