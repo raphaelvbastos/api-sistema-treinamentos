@@ -5,7 +5,7 @@ var alternativaSchema = require("./alternativamodel").schema;
 
 var usuarioRespostaSchema = new Schema(
     {
-        usuario: [usuarioSchema],
+        usuario: usuarioSchema,
         resposta: alternativaSchema
     }
 );

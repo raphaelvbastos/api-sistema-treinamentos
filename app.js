@@ -12,7 +12,7 @@ var cursoModel = require("./models/cursomodel");
 var questaoModel = require("./models/questaomodel");
 var questionarioModel = require("./models/questionariomodel");
 var unidadeModel = require("./models/unidademodel");
-var usuarioRespostaModel = require("./models/avaliacaomodel");
+var usuarioRespostaModel = require("./models/usuarioresposta");
 var videoModel = require("./models/videomodel");
 
 app.get('/', function (req, res) {
@@ -85,6 +85,13 @@ app.get('/', function (req, res) {
         }
     );
 
+    var resposta1 = new usuarioRespostaModel(
+        {
+            usuario: usuario1,
+            resposta: alternativa1,
+        }
+    );
+
     var questionario1 = new questionarioModel(
         {
             titulo: "Questionário unidade 1",
@@ -127,24 +134,55 @@ app.get('/', function (req, res) {
 
 
     var id = "5d082f980e43fb23feff9381";
-    cursoModel.find({'usuarios._id': '5d082f980e43fb23feff9381'}, (err, curso) => {
+    // cursoModel.find({'usuarios._id': '5d082f980e43fb23feff9381'}, (err, curso) => {
+    //     if (err) {
+    //         console.log(err);
+    //     }
+    //     res.json(curso);
+    // });
+
+    cursoModel.find({ 'unidades.videos.vistoPor._id': '5d082f980e43fb23feff9381' }, (err, av) => {
         if (err) {
             console.log(err);
         }
 
-        // console.dir(curso.usuarios.id(xid));
+        if (av.length > 0) {
 
-        // var usu = curso.usuarios.filter( (usuX) => {
-        //     if(usuX._id == id) {
-        //         console.dir(usuX);
-        //     }
-        // }); 
 
-        // res.send("AAAA");
+            // av.forEach(element => {
+            //     // usuario X que assistiu a um video da unidade
+            //     res.json(element.unidades[0].videos.filter(video => video.vistoPor.id("5d082f980e43fb23feff9381")));
+            // });
 
-        res.json(curso);
 
-        // console.dir(curso);
+            // atualizar curso inserindo uma resposta no questionario
+            // av[0].unidades[0].questionarios[0].questoes[0].respostas.push(resposta1);
+
+            // cursoModel.update({'_id': av[0]._id}, av[0], (err) => {
+            //     if(err) {
+            //         console.log(err);
+            //     } else {
+            //         res.json(av[0]);
+            //         // res.send("ATUALIZADO");
+            //     }
+            // });
+
+            // remover um elemento de um array de subdocumento
+            // let posicaoElemento =  av[0].unidades[0].questionarios[0].questoes[0].respostas.findIndex(r => r.usuario._id == "5d090c71304c846f48443f46");
+            // av[0].unidades[0].questionarios[0].questoes[0].respostas.splice(posicaoElemento, 1);
+
+            // inserir um video em um curso X, na unidade Y
+            //curso/5d082f980e43fb23feff939b/unidades/5d082f980e43fb23feff9392/videos
+            // let x = av.find(c => c._id == "5d082f980e43fb23feff939b").unidades.find(u => u._id == "5d082f980e43fb23feff9392").videos;
+            // res.json(x);
+
+
+            res.json(av[0]);
+
+        }
+
+
+        // res.json(av[0].unidades[0].videos[0].vistoPor);
     });
 
 
@@ -159,6 +197,12 @@ app.get('/', function (req, res) {
 
 });
 
+app.get('/curso/:idCurso/unidades/:idUnidade/videos', function (req, res) {
+    cursoModel.findOne({ '_id': req.params.idCurso }, (err, av) => {
+        let x = av.unidades.find(u => u._id == req.params.idUnidade).videos;
+        res.send(x);
+    });
+});
 
 
 var porta = process.env.PORT || 8080;
