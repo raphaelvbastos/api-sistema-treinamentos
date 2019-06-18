@@ -1,6 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 
+mongoose.connect("mongodb+srv://teste:123mudar@mongodb-dym7v.mongodb.net/test?retryWrites=true&w=majority");
 var app = express();
 
 var usuarioModel = require("./models/usuariomodel");
@@ -23,27 +24,34 @@ app.get('/', function (req, res) {
         senha: "Senha",
         tipo: "Tipo"
     });
-    
+
+    var usuario2 = new usuarioModel({
+        nome: "Usuário2",
+        email: "teste2@gmail.com",
+        senha: "123456",
+        tipo: "Empregado"
+    });
+
     var avaliacao1 = new avaliacaoModel({
         usuario: [usuario1],
         nota: 5,
         comentario: "COMENT"
     });
-    
+
     var arquivo1 = new arquivoModel(
         {
             titulo: "Notas de aula",
             link: "https://www.com.br/notas.pdf",
         }
     );
-    
+
     var arquivo2 = new arquivoModel(
         {
             titulo: "Resumo das aulas",
             link: "https://www.com.br/resumos.pdf",
         }
     );
-    
+
     var video1 = new videoModel(
         {
             titulo: "Video da aula 1",
@@ -51,21 +59,21 @@ app.get('/', function (req, res) {
             vistoPor: [usuario1]
         }
     );
-    
+
     var alternativa1 = new alternativaModel(
         {
             alternativa: "HTML5",
             correta: false
         }
     );
-    
+
     var alternativa2 = new alternativaModel(
         {
             alternativa: "CSS3",
             correta: true
         }
     );
-    
+
     var questao1 = new questaoModel(
         {
             pergunta: "É uma linguagem de folha de estilos:",
@@ -76,14 +84,14 @@ app.get('/', function (req, res) {
             respostas: []
         }
     );
-    
+
     var questionario1 = new questionarioModel(
         {
             titulo: "Questionário unidade 1",
             questoes: [questao1],
         }
     );
-    
+
     var unidade1 = new unidadeModel(
         {
             titulo: "UNIDADE 1",
@@ -93,11 +101,11 @@ app.get('/', function (req, res) {
                 arquivo2
             ],
             questionarios: [questionario1],
-    
+
         }
     );
-    
-    var curso1 = new cursoModel(
+
+    const curso1 = new cursoModel(
         {
             titulo: "Páginas WEB",
             instrutor: "Roberva da Silva",
@@ -107,16 +115,44 @@ app.get('/', function (req, res) {
                 "JAVASCRIPT"
             ],
             unidades: [unidade1],
-            usuarios: [usuario1],
-            avaliacoes: [avaliacao1], 
+            usuarios: [usuario1, usuario2],
+            avaliacoes: [avaliacao1],
         }
     );
 
-    res.json(curso1);
-    
-    console.log(curso1);
+    // curso1.save((err) => {
+    //     if (err) return handleError(err);
+    //     return res.json(curso1);
+    // });
 
-    
+
+    var id = "5d082f980e43fb23feff9381";
+    cursoModel.find({'usuarios._id': '5d082f980e43fb23feff9381'}, (err, curso) => {
+        if (err) {
+            console.log(err);
+        }
+
+        // console.dir(curso.usuarios.id(xid));
+
+        // var usu = curso.usuarios.filter( (usuX) => {
+        //     if(usuX._id == id) {
+        //         console.dir(usuX);
+        //     }
+        // }); 
+
+        console.dir(curso);
+    });
+
+
+    // curso1.findById({'_id': usuario2._id}, (err, usu) => {
+    //     console.log(usu);
+    // });
+
+    res.json(curso1);
+
+    console.log(cursoModel);
+
+
 });
 
 
