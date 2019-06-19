@@ -7,7 +7,7 @@ var avaliacaoSchema = require("./avaliacaomodel").schema;
 var cursoSchema = new Schema(
     {
         titulo: String,
-        instrutor: String,
+        instrutor: usuarioSchema,
         palavrasChave: [String],
         unidades: [unidadeSchema],
         usuarios: [usuarioSchema],
