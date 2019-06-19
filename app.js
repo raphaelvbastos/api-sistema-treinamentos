@@ -23,19 +23,19 @@ app.get('/', function (req, res) {
         tipo: "Administrador"
     });
 
-    usuarioTipo1.save(function(erro){
-        if(erro) return console.error(erro);
-        // console.log("SALVOU TIPO1");
-    });
+    // usuarioTipo1.save(function(erro){
+    //     if(erro) return console.error(erro);
+    //     // console.log("SALVOU TIPO1");
+    // });
 
     var usuarioTipo2 = new usuarioTipoModel({
         tipo: "Empregado"
     });
 
-    usuarioTipo2.save(function(erro){
-        if(erro) return console.error(erro);
-        // console.log("SALVOU TIPO2");
-    });
+    // usuarioTipo2.save(function(erro){
+    //     if(erro) return console.error(erro);
+    //     // console.log("SALVOU TIPO2");
+    // });
 
     var usuario1 = new usuarioModel({
         nome: "Usuário Administrador",
@@ -44,10 +44,10 @@ app.get('/', function (req, res) {
         tipo: [usuarioTipo1]
     });
 
-    usuario1.save(function(erro){
-        if(erro) return console.error(erro);
-        // console.log("SALVOU USUARIO1");
-    });
+    // usuario1.save(function(erro){
+    //     if(erro) return console.error(erro);
+    //     // console.log("SALVOU USUARIO1");
+    // });
 
     var usuario2 = new usuarioModel({
         nome: "Usuário Empregado1",
@@ -56,10 +56,10 @@ app.get('/', function (req, res) {
         tipo: [usuarioTipo2]
     });
 
-    usuario2.save(function(erro){
-        if(erro) return console.error(erro);
-        // console.log("SALVOU USUARIO2");
-    });
+    // usuario2.save(function(erro){
+    //     if(erro) return console.error(erro);
+    //     // console.log("SALVOU USUARIO2");
+    // });
 
     var avaliacao1 = new avaliacaoModel({
         usuario: [usuario1],
@@ -156,65 +156,65 @@ app.get('/', function (req, res) {
         }
     );
 
-    curso1.save((err) => {
-        if (err) return handleError(err);
-        // console.log("SALVOU CURSO");
-    });
+    // curso1.save((err) => {
+    //     if (err) return handleError(err);
+    //     // console.log("SALVOU CURSO");
+    // });
 
-    res.json(curso1);
+    // res.json(curso1);
 
 
-    // var id = "5d082f980e43fb23feff9381";
-    // // cursoModel.find({'usuarios._id': '5d082f980e43fb23feff9381'}, (err, curso) => {
-    // //     if (err) {
-    // //         console.log(err);
-    // //     }
-    // //     res.json(curso);
-    // // });
-
-    // cursoModel.find({ 'unidades.videos.vistoPor._id': '5d082f980e43fb23feff9381' }, (err, av) => {
+    var id = "5d082f980e43fb23feff9381";
+    // cursoModel.find({'usuarios._id': '5d082f980e43fb23feff9381'}, (err, curso) => {
     //     if (err) {
     //         console.log(err);
     //     }
-
-    //     if (av.length > 0) {
-
-
-    //         // av.forEach(element => {
-    //         //     // usuario X que assistiu a um video da unidade
-    //         //     res.json(element.unidades[0].videos.filter(video => video.vistoPor.id("5d082f980e43fb23feff9381")));
-    //         // });
-
-
-    //         // atualizar curso inserindo uma resposta no questionario
-    //         // av[0].unidades[0].questionarios[0].questoes[0].respostas.push(resposta1);
-
-    //         // cursoModel.update({'_id': av[0]._id}, av[0], (err) => {
-    //         //     if(err) {
-    //         //         console.log(err);
-    //         //     } else {
-    //         //         res.json(av[0]);
-    //         //         // res.send("ATUALIZADO");
-    //         //     }
-    //         // });
-
-    //         // remover um elemento de um array de subdocumento
-    //         // let posicaoElemento =  av[0].unidades[0].questionarios[0].questoes[0].respostas.findIndex(r => r.usuario._id == "5d090c71304c846f48443f46");
-    //         // av[0].unidades[0].questionarios[0].questoes[0].respostas.splice(posicaoElemento, 1);
-
-    //         // inserir um video em um curso X, na unidade Y
-    //         //curso/5d082f980e43fb23feff939b/unidades/5d082f980e43fb23feff9392/videos
-    //         // let x = av.find(c => c._id == "5d082f980e43fb23feff939b").unidades.find(u => u._id == "5d082f980e43fb23feff9392").videos;
-    //         // res.json(x);
-
-
-    //         res.json(av[0]);
-
-    //     }
-
-
-    //     // res.json(av[0].unidades[0].videos[0].vistoPor);
+    //     res.json(curso);
     // });
+
+    cursoModel.find({ 'unidades.videos.vistoPor._id': '5d0a27e65429030004ce4f3b' }, (err, av) => {
+        if (err) {
+            console.log(err);
+        }
+
+        if (av.length > 0) {
+
+
+            // av.forEach(element => {
+            //     // usuario X que assistiu a um video da unidade
+            //     res.json(element.unidades[0].videos.filter(video => video.vistoPor.id("5d082f980e43fb23feff9381")));
+            // });
+
+
+            // atualizar curso inserindo uma resposta no questionario
+            // av[0].unidades[0].questionarios[0].questoes[0].respostas.push(resposta1);
+
+            // cursoModel.update({'_id': av[0]._id}, av[0], (err) => {
+            //     if(err) {
+            //         console.log(err);
+            //     } else {
+            //         res.json(av[0]);
+            //         // res.send("ATUALIZADO");
+            //     }
+            // });
+
+            // remover um elemento de um array de subdocumento
+            // let posicaoElemento =  av[0].unidades[0].questionarios[0].questoes[0].respostas.findIndex(r => r.usuario._id == "5d090c71304c846f48443f46");
+            // av[0].unidades[0].questionarios[0].questoes[0].respostas.splice(posicaoElemento, 1);
+
+            // inserir um video em um curso X, na unidade Y
+            //curso/5d082f980e43fb23feff939b/unidades/5d082f980e43fb23feff9392/videos
+            // let x = av.find(c => c._id == "5d082f980e43fb23feff939b").unidades.find(u => u._id == "5d082f980e43fb23feff9392").videos;
+            // res.json(x);
+
+
+            res.json(av[0]);
+
+        }
+
+
+        // res.json(av[0].unidades[0].videos[0].vistoPor);
+    });
 
 
     // curso1.findById({'_id': usuario2._id}, (err, usu) => {
