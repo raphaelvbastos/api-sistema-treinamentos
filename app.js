@@ -25,7 +25,7 @@ app.get('/', function (req, res) {
 
     usuarioTipo1.save(function(erro){
         if(erro) return console.error(erro);
-        console.log("SALVOU TIPO1");
+        // console.log("SALVOU TIPO1");
     });
 
     var usuarioTipo2 = new usuarioTipoModel({
@@ -34,7 +34,7 @@ app.get('/', function (req, res) {
 
     usuarioTipo2.save(function(erro){
         if(erro) return console.error(erro);
-        console.log("SALVOU TIPO2");
+        // console.log("SALVOU TIPO2");
     });
 
     var usuario1 = new usuarioModel({
@@ -46,7 +46,7 @@ app.get('/', function (req, res) {
 
     usuario1.save(function(erro){
         if(erro) return console.error(erro);
-        console.log("SALVOU USUARIO1");
+        // console.log("SALVOU USUARIO1");
     });
 
     var usuario2 = new usuarioModel({
@@ -58,7 +58,7 @@ app.get('/', function (req, res) {
 
     usuario2.save(function(erro){
         if(erro) return console.error(erro);
-        console.log("SALVOU USUARIO2");
+        // console.log("SALVOU USUARIO2");
     });
 
     var avaliacao1 = new avaliacaoModel({
@@ -158,7 +158,7 @@ app.get('/', function (req, res) {
 
     curso1.save((err) => {
         if (err) return handleError(err);
-        console.log("SALVOU CURSO");
+        // console.log("SALVOU CURSO");
     });
 
     res.json(curso1);
