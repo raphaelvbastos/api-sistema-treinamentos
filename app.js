@@ -4,6 +4,10 @@ var mongoose = require('mongoose');
 mongoose.connect("mongodb+srv://teste:123mudar@mongodb-dym7v.mongodb.net/test?retryWrites=true&w=majority");
 var app = express();
 
+// app.use(require('connect').bodyParser());
+// app.use(express.bodyParser());
+
+
 var usuarioModel = require("./models/usuariomodel");
 var alternativaModel = require("./models/alternativamodel");
 var arquivoModel = require("./models/arquivomodel");
@@ -15,6 +19,10 @@ var unidadeModel = require("./models/unidademodel");
 var usuarioRespostaModel = require("./models/usuarioresposta");
 var usuarioTipoModel = require("./models/usuariotipomodel");
 var videoModel = require("./models/videomodel");
+
+// Rotas descendentes
+var usuariosRouter = require('./routers/usuariosRouter');
+app.use('/usuarios', usuariosRouter);
 
 app.get('/', function (req, res) {
     // res.send('teste');
