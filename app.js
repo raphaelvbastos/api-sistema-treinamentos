@@ -1,12 +1,13 @@
 var express = require('express');
 var mongoose = require('mongoose');
 
-mongoose.connect("mongodb+srv://teste:123mudar@mongodb-dym7v.mongodb.net/test?retryWrites=true&w=majority");
+mongoose.connect("mongodb+srv://teste:123mudar@mongodb-dym7v.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true});
 var app = express();
+var bodyParser = require('body-parser')
 
 // app.use(require('connect').bodyParser());
 // app.use(express.bodyParser());
-
+app.use(bodyParser.json());
 
 var usuarioModel = require("./models/usuariomodel");
 var alternativaModel = require("./models/alternativamodel");
