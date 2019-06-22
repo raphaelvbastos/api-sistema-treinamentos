@@ -2,6 +2,7 @@ var express = require('express');
 var usuariosRouter = express('Router');
 
 var UsuarioModel = require("../models/usuariomodel");
+var AtualizarModeloModel = require("../models/atualizarmodelos");
 
 usuariosRouter.get('/', function (req, res) {
     UsuarioModel.find(null, null, { sort: { nome: 1 } }, (erro, usuarios) => {
@@ -25,8 +26,11 @@ usuariosRouter.put('/:id', function (req, res) {
             res.end();
             return;
         }
-        res.json(req.body);
-        res.end();
+
+        req.body._id = req.params.id;
+        let atualizarModelo = new AtualizarModeloModel();
+
+        atualizarModelo.atualizarUsuario(req.body, false, res);
     });
 });
 
@@ -49,8 +53,11 @@ usuariosRouter.delete('/:id', function (req, res) {
             res.end();
             return;
         }
-        res.json(doc);
-        res.end();
+
+        req.body._id = req.params.id;
+        let atualizarModelo = new AtualizarModeloModel();
+
+        atualizarModelo.atualizarUsuario(req.body, true, res);
     });
 });
 

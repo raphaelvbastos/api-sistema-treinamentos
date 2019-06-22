@@ -1,7 +1,9 @@
 var express = require('express');
 var mongoose = require('mongoose');
 
-mongoose.connect("mongodb+srv://teste:123mudar@mongodb-dym7v.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://teste:123mudar@mongodb-dym7v.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true });
+mongoose.set('useFindAndModify', false);
+
 var app = express();
 var bodyParser = require('body-parser')
 
@@ -21,9 +23,138 @@ var usuarioRespostaModel = require("./models/usuarioresposta");
 var usuarioTipoModel = require("./models/usuariotipomodel");
 var videoModel = require("./models/videomodel");
 
+var AtualizarModelos = require("./models/atualizarmodelos");
+
 // Rotas descendentes
 var usuariosRouter = require('./routers/usuariosRouter');
 app.use('/usuarios', usuariosRouter);
+
+var cursoCategoriaRouter = require('./routers/cursocategoriaRouter');
+app.use('/cursocategoria', cursoCategoriaRouter);
+
+var cursoRouter = require('./routers/cursoRouter');
+app.use('/curso', cursoRouter);
+
+app.get('/teste', function (req, res) {
+    let objeto = null;
+    // usuarioModel.findById("5d0a27e65429030004ce4f3b", (erro, obj) => {
+    //     objeto = obj;
+
+    //     let atualizarModelo = new AtualizarModelos();
+    //     let x = atualizarModelo.atualizarUsuario(objeto, true, res);
+    //     console.log(x);
+    //     // res.json(x);
+    // });
+
+    // cursoModel.findOne({ 'unidades._id': "5d0a27e65429030004ce4f5c" }, (err, curso) => {
+    //     if (typeof curso != "undefined") {
+    //         let uni = curso.unidades.find(u => u._id == "5d0a27e65429030004ce4f5c");
+    //         let atualizarModelo = new AtualizarModelos();
+    //         let x = atualizarModelo.atualizarUnidade(uni, false, res);
+    //     }
+    // });
+
+    // cursoModel.findOne({ 'avaliacoes._id': "5d0a27e65429030004ce4f3f" }, (err, curso) => {
+    //     if (typeof curso != "undefined") {
+    //         let uni = curso.avaliacoes.find(u => u._id == "5d0a27e65429030004ce4f3f");
+    //         let atualizarModelo = new AtualizarModelos();
+    //         let x = atualizarModelo.atualizarAvaliacao(uni, true, res);
+    //     }
+    // });
+
+    cursoModel.findOne({ '_id': "5d0a27e65429030004ce4f6a" }, (err, curso) => {
+        if (typeof curso != "undefined") {
+            let atualizarModelo = new AtualizarModelos();
+            let x = atualizarModelo.atualizarCurso(curso, true, res);
+        }
+    });
+
+
+
+
+
+    // cursoModel.find({}, (err, av) => {
+    //     if (av.length > 0) {
+    //         av.forEach(curso => {
+    //             let unidade = curso.unidades.find(uni => uni.videos.find(qtn => qtn._id == '5d0a27e65429030004ce4f44'));
+
+    //             if (typeof unidade != "undefined") {
+    //                 let pos = unidade.videos.find(alt => alt._id == "5d0a27e65429030004ce4f44");
+    //                 let atualizarModelo = new AtualizarModelos();
+    //                 let x = atualizarModelo.atualizarVideo(pos, false, res);
+    //             }
+    //         });
+    //     }
+    // });
+
+    // cursoModel.find({}, (err, av) => {
+    //     if (av.length > 0) {
+    //         av.forEach(curso => {
+    //             let unidade = curso.unidades.find(uni => uni.arquivos.find(qtn => qtn._id == '5d0a27e65429030004ce4f42'));
+
+    //             if (typeof unidade != "undefined") {
+    //                 let pos = unidade.arquivos.find(alt => alt._id == "5d0a27e65429030004ce4f42");
+    //                 let atualizarModelo = new AtualizarModelos();
+    //                 let x = atualizarModelo.atualizarArquivo(pos, true, res);
+    //             }
+    //         });
+    //     }
+    // });
+
+    // cursoModel.find({}, (err, av) => {
+    //     if (av.length > 0) {
+    //         av.forEach(curso => {
+    //             let unidade = curso.unidades.find(uni => uni.questionarios.find(qtn => qtn.questoes.find(ques => ques.alternativas.find(alt => alt._id == '5d082f980e43fb23feff9389'))));
+
+    //             if (typeof unidade != "undefined") {
+    //                 unidade.questionarios.forEach(qtn => {
+    //                     qtn.questoes.forEach(ques => {
+    //                         let pos = ques.alternativas.find(alt => alt._id == "5d082f980e43fb23feff9389");
+
+    //                         let atualizarModelo = new AtualizarModelos();
+    //                         let x = atualizarModelo.atualizarAlternativa(pos, false, res);
+    //                     });
+    //                 });
+    //             }
+    //         });
+    //     }
+
+    // cursoModel.find({}, (err, av) => {
+    //     if (av.length > 0) {
+    //         av.forEach(curso => {
+    //             let unidade = curso.unidades.find(uni => uni.questionarios.find(qtn => qtn.questoes.find(ques => ques._id == '5d082f980e43fb23feff938b')));
+
+    //             if (typeof unidade != "undefined") {
+    //                 unidade.questionarios.forEach(qtn => {
+    //                     let pos = qtn.questoes.find(alt => alt._id == "5d082f980e43fb23feff938b");
+    //                     let atualizarModelo = new AtualizarModelos();
+    //                     let x = atualizarModelo.atualizarQuestao(pos, true, res);
+    //                 });
+    //             }
+    //         });
+    //     }
+    // });
+
+    // cursoModel.find({}, (err, av) => {
+    //     if (av.length > 0) {
+    //         av.forEach(curso => {
+    //             let unidade = curso.unidades.find(uni => uni.questionarios.find(qtn => qtn._id == '5d0a27e65429030004ce4f54'));
+
+    //             if (typeof unidade != "undefined") {
+    //                 let pos = unidade.questionarios.find(alt => alt._id == "5d0a27e65429030004ce4f54");
+    //                 let atualizarModelo = new AtualizarModelos();
+    //                 let x = atualizarModelo.atualizarQuestionario(pos, false, res);
+    //             }
+    //         });
+    //     }
+    // });
+
+
+
+
+
+
+});
 
 app.get('/', function (req, res) {
     // res.send('teste');
@@ -181,7 +312,50 @@ app.get('/', function (req, res) {
     //     res.json(curso);
     // });
 
-    cursoModel.find({ 'unidades.videos.vistoPor._id': '5d0a27e65429030004ce4f3b' }, (err, av) => {
+    // curso.usuarios[]
+    // curso.avaliacoes.usuario[]
+    // curso.unidades.videos.vistoPor[]
+    // curso.unidades.questionarios.questoes.respostas[]
+
+    cursoModel.find({ 'usuarios._id': '5d0a27e65429030004ce4f3b' }, (err, av) => {
+        if (av.length > 0) {
+
+
+            av.forEach(curso => {
+                // curso => usuarios
+                // let usuario = curso.usuarios.filter(usu => usu._id == '5d0a27e65429030004ce4f3b');
+
+                // curso.avaliacoes.usuario[
+                // let avaliacao = curso.avaliacoes.find(ava => ava.usuario.find(usu => usu._id == '5d0a27e65429030004ce4f3b'));
+
+
+                // curso.unidades.videos.vistoPor[]
+                // unidade = curso.unidades.filter(uni => uni.videos.filter(vd => vd.vistoPor.find(u => u._id == '5d0a27e65429030004ce4f3b')));
+                // unidade.forEach(un => {
+                //     un.videos.forEach(vd => {
+                //         let indiceUsuario = vd.vistoPor.findIndex(u => u._id == "5d0a27e65429030004ce4f3b");
+                //         res.json(indiceUsuario);
+                //     });
+                // });
+
+                unidade = curso.unidades.filter(uni => uni.questionarios.filter(qtn => qtn.questoes.filter(ques => ques.respostas.find(resp => resp.usuario._id == '5d0a27e65429030004ce4f3b'))));
+                unidade.forEach(un => {
+                    un.questionarios.forEach(qtn => {
+                        qtn.questoes.forEach(ques => {
+                            let pos = ques.respostas.findIndex(resp => resp.usuario._id == "5d0a27e65429030004ce4f3b");
+                            ques.respostas.splice(pos, 1);
+
+                            // ques.respostas.forEach(resp => {
+                            //     resp.usuario.nome = "AAAAAAAAAA";
+                            //     // res.json(resp.usuario);
+                            // });
+                        });
+                    });
+                });
+                res.json(curso);
+            });
+        }
+        // cursoModel.find({ 'unidades.videos.vistoPor._id': '5d0a27e65429030004ce4f3b' }, (err, av) => {
         if (err) {
             console.log(err);
         }
@@ -217,7 +391,7 @@ app.get('/', function (req, res) {
             // res.json(x);
 
 
-            res.json(av[0]);
+            // res.json(av[0]);
 
         }
 

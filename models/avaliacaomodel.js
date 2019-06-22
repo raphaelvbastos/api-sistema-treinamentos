@@ -5,7 +5,7 @@ var usuarioSchema = require("./usuariomodel").schema;
 
 var avaliacaoSchema = new Schema(
     {
-        usuario: [usuarioSchema],
+        usuario: usuarioSchema,
         nota: Number,
         comentario: String
     }
