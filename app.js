@@ -25,6 +25,12 @@ var videoModel = require("./models/videomodel");
 
 var AtualizarModelos = require("./models/atualizarmodelos");
 
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 // Rotas descendentes
 var usuariosRouter = require('./routers/usuariosRouter');
 app.use('/usuarios', usuariosRouter);
@@ -33,7 +39,7 @@ var cursoCategoriaRouter = require('./routers/cursocategoriaRouter');
 app.use('/cursocategoria', cursoCategoriaRouter);
 
 var cursoRouter = require('./routers/cursoRouter');
-app.use('/curso', cursoRouter);
+app.use('/cursos', cursoRouter);
 
 app.get('/teste', function (req, res) {
     let objeto = null;
