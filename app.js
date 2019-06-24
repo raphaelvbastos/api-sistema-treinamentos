@@ -32,6 +32,9 @@ app.use(function (req, res, next) {
 });
 
 // Rotas descendentes
+var autenticacaoRouter = require('./routers/autenticacaoRouter');
+app.use('/login', autenticacaoRouter);
+
 var usuariosRouter = require('./routers/usuariosRouter');
 app.use('/usuarios', usuariosRouter);
 
