@@ -23,6 +23,13 @@ var usuarioRespostaModel = require("./models/usuarioresposta");
 var usuarioTipoModel = require("./models/usuariotipomodel");
 var videoModel = require("./models/videomodel");
 
+// var CriptografiaModel = require("./models/criptografiamodel");
+
+// let x = new CriptografiaModel();
+// console.log(x.criptografar("123mudar"));
+
+// console.log(x.comparar("x123mudar", "$2a$10$RNwiBCHbcD3XVIq0PLvhZuk236Xv18Ce7PzFT6LYVvGlF0QpODJvm"));
+
 var AtualizarModelos = require("./models/atualizarmodelos");
 
 app.use(function (req, res, next) {
