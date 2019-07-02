@@ -7,7 +7,7 @@ var usuarioSchema = new Schema(
         nome: String,
         email: String,
         senha: String,
-        tipo: [usuarioTipoSchema]
+        tipo: usuarioTipoSchema
     }
 );
 
