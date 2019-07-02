@@ -51,6 +51,9 @@ app.use('/cursocategoria', cursoCategoriaRouter);
 var cursoRouter = require('./routers/cursoRouter');
 app.use('/cursos', cursoRouter);
 
+var usuarioTipoRouter = require('./routers/usuatioTipoRouter');
+app.use('/usuariotipo', usuarioTipoRouter);
+
 app.get('/teste', function (req, res) {
     let objeto = null;
     // usuarioModel.findById("5d0a27e65429030004ce4f3b", (erro, obj) => {
