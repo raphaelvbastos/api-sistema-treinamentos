@@ -4,6 +4,9 @@ var usuariosRouter = express('Router');
 var UsuarioModel = require("../models/usuariomodel");
 var AtualizarModeloModel = require("../models/atualizarmodelos");
 
+var CriptografiaModel = require("../models/criptografiamodel");
+
+
 usuariosRouter.get('/', function (req, res) {
     UsuarioModel.find(null, null, { sort: { nome: 1 } }, (erro, usuarios) => {
         if (erro) return console.error(erro);
@@ -36,6 +39,9 @@ usuariosRouter.put('/:id', function (req, res) {
 
 usuariosRouter.post('/', function (req, res) {
     let usuario = new UsuarioModel(req.body);
+    let criptografia = CriptografiaModel();
+
+    usuario.senha = criptografia.criptografar(usuario.senha);
     usuario.save((erro, usu) => {
         if (erro) {
             res.status(500).json({ error: err.message });
