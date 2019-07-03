@@ -39,7 +39,7 @@ usuariosRouter.put('/:id', function (req, res) {
 
 usuariosRouter.post('/', function (req, res) {
     let usuario = new UsuarioModel(req.body);
-    let criptografia = CriptografiaModel();
+    var criptografia = new CriptografiaModel();
 
     usuario.senha = criptografia.criptografar(usuario.senha);
     usuario.save((erro, usu) => {
