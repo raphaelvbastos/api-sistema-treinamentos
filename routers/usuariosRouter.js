@@ -33,6 +33,11 @@ usuariosRouter.put('/:id', function (req, res) {
         req.body._id = req.params.id;
         let atualizarModelo = new AtualizarModeloModel();
 
+        if(req.body.senha.length < 60) {
+            let criptografia = new CriptografiaModel();
+            req.body.senha = criptografia.criptografar(req.body.senha);
+        }
+
         atualizarModelo.atualizarUsuario(req.body, false, res);
     });
 });

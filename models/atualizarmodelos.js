@@ -16,8 +16,8 @@ class AtualizarModelos {
 
                 av.forEach(curso => {
                     // curso => instrutor
-                    if(curso.instrutor._id == "" + objetoUsuario._id) {
-                        if(!remover) {
+                    if (curso.instrutor._id == "" + objetoUsuario._id) {
+                        if (!remover) {
                             curso.instrutor = objetoUsuario;
                         } else {
                             curso.instrutor = {};
@@ -100,6 +100,9 @@ class AtualizarModelos {
                     // console.log(curso);
                     // return curso;
                 });
+            } else {
+                res.json(objetoUsuario);
+                res.end();
             }
         });
     }
