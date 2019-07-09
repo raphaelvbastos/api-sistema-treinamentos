@@ -30,6 +30,11 @@ usuariosRouter.get('/:email/:valor', function (req, res) {
 
 usuariosRouter.put('/:id', function (req, res) {
 
+    if(req.body.senha.length < 60) {
+        let criptografia = new CriptografiaModel();
+        req.body.senha = criptografia.criptografar(req.body.senha);
+    }
+
     UsuarioModel.findOneAndUpdate({ _id: req.params.id }, req.body, { upsert: true }, (err, doc) => {
         if (err) {
             res.status(500).json({ error: err.message });
@@ -39,11 +44,6 @@ usuariosRouter.put('/:id', function (req, res) {
 
         req.body._id = req.params.id;
         let atualizarModelo = new AtualizarModeloModel();
-
-        if(req.body.senha.length < 60) {
-            let criptografia = new CriptografiaModel();
-            req.body.senha = criptografia.criptografar(req.body.senha);
-        }
 
         atualizarModelo.atualizarUsuario(req.body, false, res);
     });
