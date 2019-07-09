@@ -21,6 +21,13 @@ usuariosRouter.get('/:id', function (req, res) {
     });
 });
 
+usuariosRouter.get('/:email/:valor', function (req, res) {
+    UsuarioModel.findOne({ 'email' : req.params.valor }, (erro, usuario) => {
+        if (erro) return console.error(erro);
+        res.json(usuario);
+    });
+});
+
 usuariosRouter.put('/:id', function (req, res) {
 
     UsuarioModel.findOneAndUpdate({ _id: req.params.id }, req.body, { upsert: true }, (err, doc) => {
