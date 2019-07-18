@@ -17,6 +17,13 @@ cursoCategoriaRouter.get('/:id', function (req, res) {
     });
 });
 
+cursoCategoriaRouter.get('/:nome/:valor', function (req, res) {
+    CursoCategoriaModel.findOne({ 'nome' : req.params.valor }, (erro, categoria) => {
+        if (erro) return console.error(erro);
+        res.json(categoria);
+    });
+});
+
 cursoCategoriaRouter.put('/:id', function (req, res) {
 
     CursoCategoriaModel.findOneAndUpdate({ _id: req.params.id }, req.body, { upsert: true }, (err, doc) => {
