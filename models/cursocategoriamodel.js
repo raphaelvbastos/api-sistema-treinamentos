@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var cursoCategoriaSchema = new Schema(
     {
-        titulo: String
+        nome: String
     }
 );
 
