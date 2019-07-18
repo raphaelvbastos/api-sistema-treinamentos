@@ -10,7 +10,7 @@ var cursoSchema = new Schema(
     {
         titulo: String,
         instrutor: usuarioSchema,
-        palavrasChave: [String],
+        palavrasChave: String,
         categoria: cursoCategoriaSchema,
         unidades: [unidadeSchema],
         usuarios: [usuarioSchema],
