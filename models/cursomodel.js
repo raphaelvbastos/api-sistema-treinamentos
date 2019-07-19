@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var unidadeSchema = require("./unidademodel").schema;
-var usuarioSchema = require("./usuariomodel").schema;
+var inscricaoSchema = require("./inscricaomodel").schema;
 var avaliacaoSchema = require("./avaliacaomodel").schema;
 var cursoCategoriaSchema = require("./cursocategoriamodel").schema;
 
@@ -13,7 +13,7 @@ var cursoSchema = new Schema(
         palavrasChave: String,
         categoria: cursoCategoriaSchema,
         unidades: [unidadeSchema],
-        usuarios: [usuarioSchema],
+        inscricoes: [inscricaoSchema],
         avaliacoes: [avaliacaoSchema], 
     }
 );
