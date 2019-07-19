@@ -9,7 +9,7 @@ var cursoCategoriaSchema = require("./cursocategoriamodel").schema;
 var cursoSchema = new Schema(
     {
         titulo: String,
-        instrutor: usuarioSchema,
+        nomeInstrutor: String,
         palavrasChave: String,
         categoria: cursoCategoriaSchema,
         unidades: [unidadeSchema],
