@@ -5,10 +5,10 @@ var usuarioSchema = require("./usuariomodel").schema;
 var InscricaoSchema = new Schema(
     {
         usuario: usuarioSchema,
-        percentualAndamento: number,
-        percentualAcertos: number,
-        gerouCertificado: boolean,
-        aprovado: boolean
+        percentualAndamento: Number,
+        percentualAcertos: Number,
+        gerouCertificado: Boolean,
+        aprovado: Boolean
     }
 );
 
