@@ -7,6 +7,7 @@ var questionarioSchema = require("./questionariomodel").schema;
 var unidadeSchema = new Schema(
     {
         titulo: String,
+        posicao: Number,
         videos: [videoSchema],
         arquivos: [arquivoSchema],
         questionarios: [questionarioSchema],
