@@ -5,7 +5,8 @@ var usuarioSchema = require("./usuariomodel").schema;
 var videoSchema = new Schema(
     {
         titulo: String,
-        link: String,
+        posicao: Number,
+        url: String,
         vistoPor: [usuarioSchema],
     }
 );
