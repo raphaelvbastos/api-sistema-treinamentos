@@ -16,8 +16,6 @@ uploadRouter.post('/teste', multipartMiddleware, (req, res) => {
 });
 
 uploadRouter.post('/', multipartMiddleware, (req, res) => {
-
-
     // var formidable = require('formidable');
     var fs = require('fs');
     var mv = require('mv');
