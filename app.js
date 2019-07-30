@@ -5,11 +5,14 @@ mongoose.connect("mongodb+srv://teste:123mudar@mongodb-dym7v.mongodb.net/test?re
 mongoose.set('useFindAndModify', false);
 
 var app = express();
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 
 // app.use(require('connect').bodyParser());
 // app.use(express.bodyParser());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 var usuarioModel = require("./models/usuariomodel");
 var alternativaModel = require("./models/alternativamodel");
@@ -54,6 +57,12 @@ app.use('/cursos', cursoRouter);
 
 var usuarioTipoRouter = require('./routers/usuatioTipoRouter');
 app.use('/usuariotipo', usuarioTipoRouter);
+
+var uploadRouter = require('./routers/uploadRouter');
+app.use('/upload', uploadRouter);
+
+var downloadRouter = require('./routers/downloadRouter');
+app.use('/download', downloadRouter);
 
 app.get('/teste', function (req, res) {
     let objeto = null;
