@@ -15,6 +15,12 @@ uploadRouter.post('/teste', multipartMiddleware, (req, res) => {
     });
 });
 
+uploadRouter.get('/', function (req, res) {
+    res.json({
+        'message': 'File uploaded successfully'
+    });
+});
+
 uploadRouter.post('/', multipartMiddleware, (req, res) => {
     // var formidable = require('formidable');
     var fs = require('fs');
