@@ -6,6 +6,10 @@ const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart({ uploadDir: './arquivos' });
 
 uploadRouter.post('/teste', multipartMiddleware, (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
     res.json({
         'message': 'File uploaded successfully'
     });
@@ -34,8 +38,8 @@ uploadRouter.post('/', multipartMiddleware, (req, res) => {
     // console.log(req.files.uploads[0].path);
     // console.log(req.files.uploads[0].name);
 
-    var tmp_path = req.files.uploads[0].path;
-    var target_path = 'arquivos/' + req.files.uploads[0].name;
+    var tmp_path = req.files.upload.path;
+    var target_path = 'arquivos/' + req.files.upload.name;
     mv(tmp_path, target_path, function (err) {
         if (err) throw console.log(err);
         res.json({

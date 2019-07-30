@@ -9,9 +9,10 @@ var bodyParser = require('body-parser');
 
 // app.use(require('connect').bodyParser());
 // app.use(express.bodyParser());
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '500mb', extended: true}));
 app.use(bodyParser.urlencoded({
-    extended: true
+    extended: true,
+    limit: '500mb'
 }));
 
 var usuarioModel = require("./models/usuariomodel");
