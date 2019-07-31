@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 var arquivoSchema = new Schema(
     {
         titulo: String,
-        link: String,
+        posicao: Number,
+        url: String
     }
 );
 
