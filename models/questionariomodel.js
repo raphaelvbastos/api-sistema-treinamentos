@@ -5,6 +5,7 @@ var questaoSchema = require("./questaomodel").schema;
 var questionarioSchema = new Schema(
     {
         titulo: String,
+        posicao: Number,
         questoes: [questaoSchema],
     }
 );
