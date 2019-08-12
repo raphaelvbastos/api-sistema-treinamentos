@@ -21,8 +21,15 @@ usuariosRouter.get('/:id', function (req, res) {
     });
 });
 
-usuariosRouter.get('/:email/:valor', function (req, res) {
+usuariosRouter.get('/email/:valor', function (req, res) {
     UsuarioModel.findOne({ 'email' : req.params.valor }, (erro, usuario) => {
+        if (erro) return console.error(erro);
+        res.json(usuario);
+    });
+});
+
+usuariosRouter.get('/tipo/:valor', function (req, res) {
+    UsuarioModel.find({ 'tipo.tipo' : req.params.valor }, (erro, usuario) => {
         if (erro) return console.error(erro);
         res.json(usuario);
     });
