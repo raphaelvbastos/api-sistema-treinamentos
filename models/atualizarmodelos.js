@@ -15,23 +15,16 @@ class AtualizarModelos {
             if (av.length > 0) {
 
                 av.forEach(curso => {
-                    // curso => instrutor
-                    if (curso.instrutor._id == "" + objetoUsuario._id) {
+
+                    // curso => inscricoes
+                    let inscricao = curso.inscricoes.find(usu => usu.usuario._id == "" + objetoUsuario._id);
+
+                    if(inscricao != null) {
+                        let pos = curso.inscricoes.findIndex(usu => usu.usuario._id == "" + objetoUsuario._id);
+                        inscricao.usuario = objetoUsuario;
+                        curso.inscricoes.splice(pos, 1);
                         if (!remover) {
-                            curso.instrutor = objetoUsuario;
-                        } else {
-                            curso.instrutor = {};
-                        }
-                    }
-
-                    // curso => usuarios
-                    let usuario = curso.usuarios.findIndex(usu => usu._id == "" + objetoUsuario._id);
-
-                    if (usuario > -1) {
-                        curso.usuarios.splice(usuario, 1);
-
-                        if (!remover) {
-                            curso.usuarios.push(objetoUsuario);
+                            curso.inscricoes.push(inscricao);
                         }
                     }
 
@@ -49,7 +42,9 @@ class AtualizarModelos {
 
                     // curso.unidades.videos.vistoPor[]
                     let unidade = curso.unidades.filter(uni => uni.videos.filter(vd => vd.vistoPor.find(u => u._id == "" + objetoUsuario._id)));
+
                     unidade.forEach(un => {
+
                         un.videos.forEach(vd => {
                             let indiceUsuario = vd.vistoPor.findIndex(u => u._id == "" + objetoUsuario._id);
 
@@ -61,11 +56,7 @@ class AtualizarModelos {
                                 }
                             }
                         });
-                    });
 
-                    // resposta questoes
-                    unidade = curso.unidades.filter(uni => uni.questionarios.filter(qtn => qtn.questoes.filter(ques => ques.respostas.find(resp => resp.usuario._id == '5d0a27e65429030004ce4f3b'))));
-                    unidade.forEach(un => {
                         un.questionarios.forEach(qtn => {
                             qtn.questoes.forEach(ques => {
                                 let pos = ques.respostas.findIndex(resp => resp.usuario._id == "" + objetoUsuario._id);
@@ -84,6 +75,7 @@ class AtualizarModelos {
                                 // });
                             });
                         });
+
                     });
 
                     cursoModel.findOneAndUpdate({ _id: curso._id }, curso, { upsert: true }, (err, doc) => {
